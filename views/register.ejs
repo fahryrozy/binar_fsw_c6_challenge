@@ -15,10 +15,19 @@
         <div class="col-md-6 mt-5">
           <div class="card">
             <div class="card-header">
-              <h3>Login</h3>
+              <h3>Register</h3>
             </div>
             <div class="card-body">
-              <form method="POST" action="/login">
+              <form method="POST" action="/user/register">
+                <div class="form-group">
+                  <label for="username">Fullname:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fullname"
+                    name="fullname"
+                  />
+                </div>
                 <div class="form-group">
                   <label for="username">Username:</label>
                   <input
@@ -39,18 +48,16 @@
                     required
                   />
                 </div>
-                <div class="form-group d-flex align-center">
-                  <button type="submit" class="btn btn-primary w-75 mx-auto">
-                    Login
-                  </button>
-                </div>
                 <div class="form-group d-flex mx-auto w-50">
-                  <a href="/" class="btn btn-warning ml-auto mr-2 w-50">Back</a>
-                  <a
-                    href="/user/register"
-                    class="btn btn-success mr-auto ml-2 w-50"
-                    >Register</a
+                  <button type="reset" class="btn btn-danger ml-auto mr-2 w-50">
+                    Reset
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary ml-auto mr-2 w-50"
                   >
+                    Register
+                  </button>
                 </div>
               </form>
             </div>
