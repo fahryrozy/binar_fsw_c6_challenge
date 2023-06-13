@@ -1,0 +1,80 @@
+<!-- views/users.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>User Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <style>
+      .table-container {
+        display: flex;
+        justify-content: center;
+      }
+      td {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mx-auto p-8">
+      <h1 class="text-3xl font-bold mb-4">User Management</h1>
+
+      <a
+        href="create"
+        class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded"
+        >Create User</a
+      >
+
+      <div class="table-container">
+        <table class="min-w-full border border-gray-300 mt-4">
+          <thead>
+            <tr>
+              <th class="border-b px-4 py-2">ID</th>
+              <th class="border-b px-4 py-2">Userame</th>
+              <th class="border-b px-4 py-2">Password</th>
+              <th class="border-b px-4 py-2">Created At</th>
+              <th class="border-b px-4 py-2">Updated At</th>
+              <th class="border-b px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach(function(user) { %>
+            <tr>
+              <td class="border-b px-4 py-2"><%= user.id %></td>
+              <td class="border-b px-4 py-2"><%= user.username %></td>
+              <td class="border-b px-4 py-2"><%= user.password %></td>
+              <td class="border-b px-4 py-2">
+                <%= user.createdAt.toLocaleString() %>
+              </td>
+              <td class="border-b px-4 py-2">
+                <%= user.updatedAt.toLocaleString() %>
+              </td>
+              <td class="border-b px-4 py-2">
+                <a
+                  href="/user/<%= user.id %>/"
+                  class="bg-green-500 hover:bg-green-700 text-white px-4 py-1 rounded"
+                  >View</a
+                >
+                <a
+                  href="/user/<%= user.id %>/edit"
+                  class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded"
+                  >Edit</a
+                >
+                <a
+                  href="/user/<%= user.id %>/delete"
+                  class="bg-red-500 hover:bg-red-700 text-white px-4 py-1 rounded"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

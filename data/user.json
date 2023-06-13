@@ -1,10 +1,17 @@
 [
   {
     "username": "fahry",
-    "password": "fahry"
+    "password": "fahry",
+    "role": "user"
   },
   {
     "username": "rozy",
-    "password": "rozy"
+    "password": "rozy",
+    "role": "user"
+  },
+  {
+    "username": "admin",
+    "password": "admin",
+    "role": "superuser"
   }
 ]

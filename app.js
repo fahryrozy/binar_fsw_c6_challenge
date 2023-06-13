@@ -3,11 +3,13 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const expressSession = require("express-session");
 
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
 var gameRouter = require("./routes/game");
 var userRouter = require("./routes/user");
+const AuthMiddleware = require("./middlewares/AuthMiddleware");
 
 var app = express();
 
@@ -20,11 +22,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  expressSession({
+    secret: "asdasdasd",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.get("/", indexRouter);
-app.use("/login", authRouter);
-app.use("/play", gameRouter);
-app.use("/user", userRouter);
+app.use("/auth", authRouter);
+app.use("/play", AuthMiddleware, gameRouter);
+app.use("/user", AuthMiddleware, userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
